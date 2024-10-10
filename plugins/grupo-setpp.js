@@ -34,6 +34,6 @@ await conn.updateProfilePicture(m.chat, img).then(_ => m.reply('⚘ *_Imagen act
 } else throw '*⚠️️ Responde a una imagen.*'}
 handler.command = /^setpp(group|grup|gc)?$/i
 handler.grupo = true
-handler.admin = true
+handler.grupo = true
 handler.grupo = true
 export default handler*/
