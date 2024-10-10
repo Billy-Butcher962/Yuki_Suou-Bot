@@ -45,8 +45,8 @@ const handler = async (m, {isPrems, conn}) => {
   // await conn.sendButton(m.chat, texto, wm, img, [['🔰 𝙼𝙴𝙽𝚄', '/menu'] ], fkontak, m)
   global.db.data.users[m.sender].lastcofre = new Date * 1;
 };
-handler.help = ['daily'];
-handler.tags = ['xp'];
+handler.help = ['cofre'];
+handler.tags = ['rpg'];
 handler.command = ['coffer', 'cofre', 'abrircofre', 'cofreabrir'];
 handler.level = 5;
 handler.group = true;
