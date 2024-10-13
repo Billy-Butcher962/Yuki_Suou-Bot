@@ -5,8 +5,17 @@ import cheerio from 'cheerio';
 
 const handler = async (m, { text, usedPrefix, command, conn }) => {
   try {
-    const idioma = global.db.data.users[m.sender].language || global.defaultLenguaje;
-    const _translate = JSON.parse(fs.readFileSync(`./src/languages/${idioma}.json`));
+    // Usar un idioma por defecto si no está definido
+    const idioma = global.db.data.users[m.sender]?.language || 'es'; // 'es' como idioma por defecto
+    let _translate = {};
+
+    // Intentar cargar el archivo de idioma correspondiente
+    try {
+      _translate = JSON.parse(fs.readFileSync(`./src/languages/${idioma}.json`));
+    } catch {
+      _translate = JSON.parse(fs.readFileSync('./src/languages/es.json')); // Cargar español como idioma por defecto
+    }
+
     const tradutor = _translate.plugins.buscador_peliculas;
 
     if (!text) throw `*${tradutor.texto1}*`;
