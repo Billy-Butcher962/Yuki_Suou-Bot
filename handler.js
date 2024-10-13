@@ -282,10 +282,17 @@ if (opts['swonly'] && m.chat !== 'status@broadcast') return
 if (typeof m.text !== 'string')
 m.text = ''
 
-        //if (m.isBaileys) return 
-        if (m.isBaileys || isBaileysFail && m?.sender === this?.this?.user?.jid) {
-        return
-        }
+        // Procesa todos los mensajes, incluidos los enviados por el bot
+if (m.isBaileys) return; // Ignora mensajes de otros bots
+
+// Aquí puedes agregar lógica específica para mensajes enviados por el bot
+if (m.sender === this.user.jid) {
+    // Realiza alguna acción específica para los mensajes del bot
+    console.log("El bot ha enviado un mensaje:", m);
+}
+
+// Procesa otros mensajes normalmente
+// ... tu lógica de procesamiento de mensajes
 m.exp += Math.ceil(Math.random() * 10)
 let usedPrefix
 let _user = global.db.data && global.db.data.users && global.db.data.users[m.sender]
