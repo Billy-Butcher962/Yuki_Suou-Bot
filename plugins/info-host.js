@@ -6,8 +6,8 @@ Descubre *SkayUltraPlus*, tu solución ideal con servidores dedicados y precios 
 
 🟢 *Información del Host*
 
-🔮 *Dashboard:*  
-• (https://dash.skyultraplus.com)
+🔮 *Regístrate aquí:*  
+• (https://dash.skyultraplus.com/register?ref=n8BEHim5)
 
 🧃 *Panel de Control:*  
 • (https://panel.skyultraplus.com)
