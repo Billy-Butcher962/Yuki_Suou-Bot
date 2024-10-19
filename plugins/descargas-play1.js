@@ -1,7 +1,5 @@
 import fetch from 'node-fetch';
 import yts from 'yt-search';
-import ytdl from 'ytdl-core';
-import axios from 'axios';
 import { youtubedl } from '@bochilteam/scraper';
 
 const handler = async (m, { conn, command, args, text, usedPrefix }) => {
@@ -9,30 +7,21 @@ const handler = async (m, { conn, command, args, text, usedPrefix }) => {
 
     try {
         const yt_play = await search(args.join(' '));
+        if (!yt_play.length) throw 'No se encontraron resultados.';
+
         const videoUrl = yt_play[0].url;
         const texto1 = `
-╭ׅׄ̇─͓̗̗─ׅ̻ׄ╮۪̇߭⊹߭̇︹ׅ̟ׄ̇︹ׅ۪ׄ̇߭︹ׅ̟ׄ̇⊹۪̇߭︹ׅ̟ׄ̇︹ׅ۪ׄ̇߭︹ׅ̟ׄ̇⊹۪̇߭︹ׅ̟ׄ̇︹ׅ۪ׄ̇߭︹ׅ̟ׄ̇߭︹ׅ۪ׄ̇߭̇⊹
-┟─⬪࣪ꥈ𑁍⃪࣭۪ٜ݊݊݊݊݊໑ٜ࣪𝔻𝔼𝕊ℂ𝔸ℝ𝔾𝔸𝕊໑⃪࣭۪ٜ݊݊݊݊𑁍ꥈ࣪⬪╮
-╭┄─🍂⬪࣪ꥈ𑁍⃪࣭۪ٜ݊݊݊݊݊໑ٜ࣪𝕐𝕦𝕜𝕚_𝕊𝕦𝕠𝕦໑⃪࣭۪ٜ݊݊݊݊𑁍ꥈ࣪⬪╯
+╭ׅׄ̇─͓̗̗─ׅ̄╮
+┟─⬪𝕐𝕦𝕜𝕚_𝕊𝕦𝕠𝕦⬪╮
 │
-├ ⚘݄𖠵⃕⁖𖥔. _*𝕋í𝕥𝕦𝕝𝕠*_
-├» ${yt_play[0].title}
-├╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌┄
-├ ⚘݄𖠵⃕⁖𖥔. _*ℙ𝕦𝕓𝕝𝕚𝕔𝕒𝕕𝕠*_
-├» ${yt_play[0].ago}
-├╌╌╌╌╌╌╌╌╌╌╌╌╌╌┈
-├ ⚘݄𖠵⃕⁖𖥔. _*𝔻𝕦𝕣𝕒𝕔𝕚ó𝕟*_
-├» ${secondString(yt_play[0].duration.seconds)}
-├╌╌╌╌╌╌╌╌╌╌╌╌┄
-├ ⚘݄𖠵⃕⁖𖥔. _*𝕍𝕚𝕤𝕥𝕒𝕤*_
-├» ${MilesNumber(yt_play[0].views)}
-├╌╌╌╌╌╌╌╌╌╌┄
-├ ⚘݄𖠵⃕⁖𖥔. _*𝔸𝕦𝕥𝕠𝕣(𝕒)*_
-├» ${yt_play[0].author.name}
-├╌╌╌╌╌╌╌╌┈
-├ ⚘݄𖠵⃕⁖𖥔. _*𝔼𝕟𝕝𝕒𝕔𝕖*_
-├» ${videoUrl}
-╰ׁ̻۫─۪۬─۟─۪─۫─۪۬─۟─۪─۟─۪۬─۟─۪─۟─۪۬─۟─۪─۟┄۪۬┄۟┄۪┈۟┈۪`.trim();
+├ ⚘ 𝕋í𝕥𝕦𝕝𝕠: ${yt_play[0].title}
+├ ⚘ ℙ𝕦𝕓𝕝𝕚𝕔𝕒𝕕𝕠: ${yt_play[0].ago}
+├ ⚘ 𝔻𝕦𝕣𝕒𝕔𝕚ó𝕟: ${secondString(yt_play[0].duration.seconds)}
+├ ⚘ 𝕍𝕚𝕤𝕥𝕒𝕤: ${MilesNumber(yt_play[0].views)}
+├ ⚘ 𝔸𝕦𝕥𝕠𝕣(𝕒): ${yt_play[0].author.name}
+├ ⚘ 𝔼𝕟𝕝𝕒𝕔𝕖: ${videoUrl}
+╰ׁ̻─۟─۪─۟─۪﹅
+        `.trim();
 
         await conn.sendButton(m.chat, wm, texto1, yt_play[0].thumbnail, [
             ['𝕄𝔼ℕ𝕌 ✨', `${usedPrefix}menu`],
@@ -51,8 +40,7 @@ const handler = async (m, { conn, command, args, text, usedPrefix }) => {
 
     } catch (e) {
         await conn.reply(m.chat, `*[ ! ] ʜᴜʙᴏ ᴜɴ ᴇʀʀᴏʀ ᴇɴ ᴇʟ ᴄᴏᴍᴀɴᴅᴏ ᴘᴏʀ ғᴀᴠᴏʀ ɪɴᴛᴇɴᴛᴀ ᴍᴀs ᴛᴀʀᴅᴇ..*`, fkontak, m, rcanal);
-        console.log(`❗❗ᴇʀʀᴏʀ ${usedPrefix + command} ❗❗`);
-        console.log(e);
+        console.error(`❗❗ᴇʀʀᴏʀ ${usedPrefix + command} ❗❗`, e);
     }
 };
 
