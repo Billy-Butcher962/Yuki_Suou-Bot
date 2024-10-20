@@ -1,5 +1,5 @@
 const cooldown = 604800000 * 4; // 4 semanas
-const baseReward = 20000;
+const baseCoinReward = 20000;
 
 var handler = async (m, { conn }) => {
     let user = global.db.data.users[m.sender];
@@ -10,15 +10,23 @@ var handler = async (m, { conn }) => {
     }
 
     // Recompensas aleatorias
-    let coinReward = pickRandom([5000, 10000, 15000, 20000, baseReward]);
+    let coinReward = pickRandom([5000, 10000, 15000, 20000, baseCoinReward]);
+    let cookieReward = pickRandom([1, 2, 3, 4, 5]); // Cantidad de cookies
+    let expReward = pickRandom([500, 1000, 1500, 2000, 2500]); // Recompensa de experiencia
+
+    // Actualizar los valores del usuario
     user.coin += coinReward;
+    user.cookies = (user.cookies || 0) + cookieReward; // Añadir cookies
+    user.exp = (user.exp || 0) + expReward; // Añadir experiencia
 
     m.reply(`
-\`\`\`🎁 ¿Ya ha pasado un mes? El tiempo se pasa volando. ¡Disfruta tu regalo mensual! 🐢\`\`\`
+\`\`\`🎁 ¡Ha pasado un mes! ¡Disfruta de tu regalo mensual! 🐢\`\`\`
 
-🪙 *YukiCoins* : +${coinReward.toLocaleString()}`);
-    
-    user.monthly = new Date * 1;
+🪙 *YukiCoins* : +${coinReward.toLocaleString()}
+🍪 *Cookies* : +${cookieReward}
+✨ *Experiencia* : +${expReward}`);
+
+    user.monthly = new Date * 1; // Actualizar la fecha de reclamación
 }
 
 handler.help = ['monthly'];
