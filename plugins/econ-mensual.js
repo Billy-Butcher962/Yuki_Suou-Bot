@@ -1,26 +1,25 @@
-const DEFAULT_REWARD = 20000; // Recompensa mensual por defecto
-const DEFAULT_COOLDOWN = 604800000 * 4; // Tiempo de enfriamiento por defecto (4 semanas)
+const cooldown = 604800000 * 4; // 4 semanas
+const baseReward = 20000;
 
-let handler = async (m, { conn }) => {
+var handler = async (m, { conn }) => {
     let user = global.db.data.users[m.sender];
+    let timeRemaining = user.monthly + cooldown - new Date();
 
-    // Verifica si ya ha reclamado la recompensa mensual
-    if (new Date() - user.monthly < DEFAULT_COOLDOWN) {
-        throw `⏱️ ¡Ya reclamaste tu regalo mensual! Vuelve en:\n *${msToTime((user.monthly + DEFAULT_COOLDOWN) - new Date())}*`;
+    if (timeRemaining > 0) {
+        return m.reply(`⏱️ ¡Ya reclamaste tu regalo mensual! Vuelve en:\n *${msToTime(timeRemaining)}*`);
     }
 
-    // Actualiza la cantidad de monedas
-    user.coin += DEFAULT_REWARD;
+    // Recompensas aleatorias
+    let coinReward = pickRandom([5000, 10000, 15000, 20000, baseReward]);
+    user.coin += coinReward;
 
-    // Respuesta al usuario
-    conn.reply(m.chat, `
-\`\`\`🎁 ¡Es hora de tu regalo mensual! 🐢\`\`\`
+    m.reply(`
+\`\`\`🎁 ¿Ya ha pasado un mes? El tiempo se pasa volando. ¡Disfruta tu regalo mensual! 🐢\`\`\`
 
-🪙 *${mssg.money}* : +${DEFAULT_REWARD.toLocaleString()}`, m);
-
-    // Actualiza la fecha del último reclamo
-    user.monthly = new Date() * 1;
-};
+🪙 *YukiCoins* : +${coinReward.toLocaleString()}`);
+    
+    user.monthly = new Date * 1;
+}
 
 handler.help = ['monthly'];
 handler.tags = ['econ'];
@@ -28,17 +27,21 @@ handler.command = ['mensual', 'monthly'];
 
 export default handler;
 
+function pickRandom(list) {
+    return list[Math.floor(Math.random() * list.length)];
+}
+
 function msToTime(duration) {
-    let milliseconds = parseInt((duration % 1000) / 100),
+    var milliseconds = parseInt((duration % 1000) / 100),
         seconds = Math.floor((duration / 1000) % 60),
         minutes = Math.floor((duration / (1000 * 60)) % 60),
         hours = Math.floor((duration / (1000 * 60 * 60)) % 24),
         days = Math.floor((duration / (1000 * 60 * 60 * 24)) % 365);
-    
+
     hours = (hours < 10) ? "0" + hours : hours;
     minutes = (minutes < 10) ? "0" + minutes : minutes;
     seconds = (seconds < 10) ? "0" + seconds : seconds;
     days = (days > 0) ? days : 0;
 
-    return days + ` ${mssg.day} ` + hours + ` ${mssg.hour} ` + minutes + ` ${mssg.minute}`;
+    return `${days} días ${hours} horas ${minutes} minutos`;
 }
