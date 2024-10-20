@@ -1,246 +1,66 @@
-import fg from 'api-dylux'
-import { youtubedl, youtubedlv2 } from '@bochilteam/scraper'
-import yts from 'yt-search'
-import fetch from 'node-fetch' 
+import fetch from 'node-fetch';
+import axios from 'axios';
 
-let handler = async (m, { conn, args, usedPrefix, text, command }) => {
-let lister = ["mp3", "yta", "audio", "ytv", "video", "vídeo", "mp4", "mp3doc", "ytadoc", "audiodoc", "mp4doc", "ytvdoc", "videodoc", "vídeodoc"]
+const handler = async (m, {conn, command, args, text, usedPrefix}) => {
 
-let [feature, inputs, inputs_, inputs__, inputs___] = text.split(" ")
-if (!lister.includes(feature)) return conn.reply(m.chat, `🚩 Ingresa el formato en que deseas descargar más el titulo de un video o musica de YouTube.\n\nEjemplo : ${usedPrefix + command} *mp3* SUICIDAL-IDOL - ecstacy\n\nFormatos disponibles :\n${usedPrefix + command} *mp3*\n${usedPrefix + command} *mp3doc*\n${usedPrefix + command} *mp4*\n${usedPrefix + command} *mp4doc*`, m, rcanal)
-if (lister.includes(feature)) {
-if (feature == "mp3" || feature == "yta" || feature == "audio") {
-if (!inputs) return conn.reply(m.chat, '🚩 Ingresa el título de un video o canción de YouTube.\n\n`Ejemplo:`\n' + `> *${usedPrefix + command}* Gemini Aaliyah - If Only`, m, rcanal)
-await m.react('🕓')
-let res = await yts(text)
-let vid = res.videos[0]
-let q = '128kbps'
-let txt = '`乂  Y O U T U B E  -  P L A Y`\n\n'
-	txt += `	✩   *Título* : ${vid.title}\n`
-	txt += `	✩   *Duración* : ${vid.timestamp}\n`
-	txt += `	✩   *Visitas* : ${toNum(vid.views)} ( *${formatNumber(vid.views)}* )\n`
-	txt += `	✩   *Autor* : ${vid.author.name}\n`
-	txt += `	✩   *Publicado* : ${eYear(vid.ago)}\n`
-	txt += `	✩   *Url* : ${'https://youtu.be/' + vid.videoId}\n\n`
-	txt += `> *- ↻ El audio se esta enviando espera un momento, soy lento. . .*`
-await conn.sendFile(m.chat, vid.thumbnail, 'thumbnail.jpg', txt, m, null, rcanal)
-try {
-let yt = await fg.yta(vid.url, q)
-let { title, dl_url, size } = yt
-let limit = 100
-       
-if (size.split('MB')[0] >= limit) return star.reply(m.chat, `El archivo pesa mas de ${limit} MB, se canceló la Descarga.`, m, rcanal).then(_ => m.react('✖️'))
+    if (!text) throw `_*[ ⚠️ ] Agrega lo que quieres buscar*_\n\n_Ejemplo:_\n.play Marshmello Moving On`;
 
-await conn.sendMessage(m.chat, { audio: { url: dl_url }, fileName: title + '.mp3', mimetype: 'audio/mp4' }, { quoted: m })
-await m.react('✅')
-} catch {
-try {
-let yt = await fg.ytmp3(vid.url, q)
-let { title, dl_url, size } = yt
-let limit = 100
-       
-if (size.split('MB')[0] >= limit) return star.reply(m.chat, `El archivo pesa mas de ${limit} MB, se canceló la Descarga.`, m, rcanal).then(_ => m.react('✖️'))
-       
-await conn.sendMessage(m.chat, { audio: { url: dl_url }, fileName: title + '.mp3', mimetype: 'audio/mp4' }, { quoted: m })
-await m.react('✅')
-} catch {
-await m.react('✖️')
-}}}
+    try { 
         
-if (feature == "mp4" || feature == "ytv" || feature == "video" || feature == "video") {
-if (!inputs) return conn.reply(m.chat, '🚩 Ingresa el título de un video o canción de YouTube.\n\n`Ejemplo:`\n' + `> *${usedPrefix + command}* Gemini Aaliyah - If Only`, m, rcanal)
-await m.react('🕓')
-let res = await yts(text)
-let vid = res.videos[0]
-let q = '480p'
-let txt = '`乂  Y O U T U B E  -  P L A Y`\n\n'
-	txt += `	✩   *Título* : ${vid.title}\n`
-	txt += `	✩   *Duración* : ${vid.timestamp}\n`
-	txt += `	✩   *Visitas* : ${toNum(vid.views)} ( *${formatNumber(vid.views)}* )\n`
-	txt += `	✩   *Autor* : ${vid.author.name}\n`
-	txt += `	✩   *Publicado* : ${eYear(vid.ago)}\n`
-	txt += `	✩   *Url* : ${'https://youtu.be/' + vid.videoId}\n\n`
-	txt += `> *- ↻ El video se esta enviando espera un momento, soy lento. . .*`
-await conn.sendFile(m.chat, vid.thumbnail, 'thumbnail.jpg', txt, m, null, rcanal)
-try {
-let yt = await fg.ytv(vid.url, q)
-let { title, dl_url, size } = yt
-let limit = 100
-       
-if (size.split('MB')[0] >= limit) return star.reply(m.chat, `El archivo pesa mas de ${limit} MB, se canceló la Descarga.`, m, rcanal).then(_ => m.react('✖️'))
-       
-await conn.sendFile(m.chat, dl_url, 'yt.jpg', `${vid.title}\n⇆ㅤㅤ◁ㅤㅤ❚❚ㅤㅤ▷ㅤㅤ↻\n00:15 ━━━━●────── ${vid.timestamp}`, m)
-await m.react('✅')
-} catch {
-try {
-let yt = await fg.ytmp4(vid.url, q)
-let { title, dl_url, size } = yt
-let limit = 100
-       
-if (size.split('MB')[0] >= limit) return star.reply(m.chat, `El archivo pesa mas de ${limit} MB, se canceló la Descarga.`, m, rcanal).then(_ => m.react('✖️'))
-       
-await conn.sendFile(m.chat, dl_url, 'yt.jpg', `${vid.title}\n⇆ㅤㅤ◁ㅤㅤ❚❚ㅤㅤ▷ㅤㅤ↻\n00:15 ━━━━●────── ${vid.timestamp}`, m)
-await m.react('✅')
-} catch {
-await m.react('✖️')
-}}}
+        let { data } = await axios.get(`https://deliriussapi-oficial.vercel.app/search/spotify?q=${encodeURIComponent(text)}&limit=10`);
+
+        if (!data.data || data.data.length === 0) {
+            throw `_*[ ⚠️ ] No se encontraron resultados para "${text}" en Youtube.*_`;
+        }
+
+        const img = data.data[0].image;
+        const url = data.data[0].url;
+        const info = `⧁ 𝙏𝙄𝙏𝙐𝙇𝙊
+» ${data.data[0].title}
+﹘﹘﹘﹘﹘﹘﹘﹘﹘﹘﹘﹘
+⧁ 𝙋𝙐𝘽𝙇𝙄𝘾𝘼𝘿𝙊
+» ${data.data[0].publish}
+﹘﹘﹘﹘﹘﹘﹘﹘﹘﹘﹘﹘
+⧁ 𝗗𝗨𝗥𝗔𝗖𝗜𝗢𝗡
+» ${data.data[0].duration}
+﹘﹘﹘﹘﹘﹘﹘﹘﹘﹘﹘﹘
+⧁  𝙋𝙊𝙋𝙐𝙇𝘼𝙍𝙄𝘿𝘼𝘿
+» ${data.data[0].popularity}
+﹘﹘﹘﹘﹘﹘﹘﹘﹘﹘﹘﹘
+⧁  𝘼𝙍𝙏𝙄𝙎𝙏𝘼
+» ${data.data[0].artist}
+﹘﹘﹘﹘﹘﹘﹘﹘﹘﹘﹘﹘
+⧁ 𝙐𝙍𝙇
+» ${url}
+
+_*🎶 Enviando música...*_`.trim();
+
+        await conn.sendFile(m.chat, img, 'imagen.jpg', info, m);
+
+        //＼／＼／＼／＼／＼／ DESCARGAR ＼／＼／＼／＼／＼／
     
-if (feature == "mp3doc" || feature == "ytadoc" || feature == "audiodoc") {
-if (!inputs) return conn.reply(m.chat, '🚩 Ingresa el título de un video o canción de YouTube.\n\n`Ejemplo:`\n' + `> *${usedPrefix + command}* Gemini Aaliyah - If Only`, m, rcanal)
-await m.react('🕓')
-let res = await yts(text)
-let vid = res.videos[0]
-let q = '128kbps'
-let txt = '`乂  Y O U T U B E  -  P L A Y`\n\n'
-	txt += `	✩   *Título* : ${vid.title}\n`
-	txt += `	✩   *Duración* : ${vid.timestamp}\n`
-	txt += `	✩   *Visitas* : ${toNum(vid.views)} ( *${formatNumber(vid.views)}* )\n`
-	txt += `	✩   *Autor* : ${vid.author.name}\n`
-	txt += `	✩   *Publicado* : ${eYear(vid.ago)}\n`
-	txt += `	✩   *Url* : ${'https://youtu.be/' + vid.videoId}\n\n`
-	txt += `> *- ↻ El audio se esta enviando espera un momento, soy lenta. . .*`
-await conn.sendFile(m.chat, vid.thumbnail, 'thumbnail.jpg', txt, m, null, rcanal)
-try {
-let yt = await fg.yta(vid.url, q)
-let { title, dl_url, size } = yt
-let limit = 100
-       
-if (size.split('MB')[0] >= limit) return star.reply(m.chat, `El archivo pesa mas de ${limit} MB, se canceló la Descarga.`, m, rcanal).then(_ => m.react('✖️'))
-       
-await conn.sendMessage(m.chat, { document: { url: dl_url }, caption: '', mimetype: 'audio/mpeg', fileName: `${vid.title}.mp3`}, { quoted: m })
-await m.react('✅')
-} catch {
-try {
-let yt = await fg.ytmp3(vid.url, q)
-let { title, dl_url, size } = yt
-let limit = 100
-       
-if (size.split('MB')[0] >= limit) return star.reply(m.chat, `El archivo pesa mas de ${limit} MB, se canceló la Descarga.`, m, rcanal).then(_ => m.react('✖️'))
-       
-await conn.sendMessage(m.chat, { document: { url: dl_url }, caption: '', mimetype: 'audio/mpeg', fileName: `${vid.title}.mp3`}, { quoted: m })
-} catch {
-await m.react('✖️')
-    }}}
-    
-if (feature == "mp4doc" || feature == "ytvdoc" || feature == "videodoc" || feature == "videodoc") {
-if (!inputs) return conn.reply(m.chat, '🚩 Ingresa el título de un video o canción de YouTube.\n\n`Ejemplo:`\n' + `> *${usedPrefix + command}* Gemini Aaliyah - If Only`, m, rcanal)
-await m.react('🕓')
-let res = await yts(text)
-let vid = res.videos[0]
-let q = '480p'
-let txt = '`乂  Y O U T U B E  -  P L A Y`\n\n'
-	txt += `	✩   *Título* : ${vid.title}\n`
-	txt += `	✩   *Duración* : ${vid.timestamp}\n`
-	txt += `	✩   *Visitas* : ${toNum(vid.views)} ( *${formatNumber(vid.views)}* )\n`
-	txt += `	✩   *Autor* : ${vid.author.name}\n`
-	txt += `	✩   *Publicado* : ${eYear(vid.ago)}\n`
-	txt += `	✩   *Url* : ${'https://youtu.be/' + vid.videoId}\n\n`
-	txt += `> *- ↻ El video se esta enviando espera un momento, soy lenta. . .*`
-await conn.sendFile(m.chat, vid.thumbnail, 'thumbnail.jpg', txt, m, null, rcanal)
-try {
-let yt = await fg.ytv(vid.url, q)
-let { title, dl_url, size } = yt
-let limit = 300
-       
-if (size.split('MB')[0] >= limit) return star.reply(m.chat, `El archivo pesa mas de ${limit} MB, se canceló la Descarga.`, m, rcanal).then(_ => m.react('✖️'))
-       
-await conn.sendMessage(m.chat, { document: { url: dl_url }, caption: '', mimetype: 'video/mp4', fileName: `${vid.title}` + `.mp4`}, {quoted: m })
-await m.react('✅')
-} catch {
-try {
-let yt = await fg.ytmp4(vid.url, q)
-let { title, dl_url, size } = yt
-let limit = 300
-       
-if (size.split('MB')[0] >= limit) return star.reply(m.chat, `El archivo pesa mas de ${limit} MB, se canceló la Descarga.`, m, rcanal).then(_ => m.react('✖️'))
-       
-await conn.sendMessage(m.chat, { document: { url: dl_url }, caption: '', mimetype: 'video/mp4', fileName: `${vid.title}` + `.mp4`}, {quoted: m })
-await m.react('✅')
-} catch {
-await m.react('✖️')
-}}}}}
-handler.help = ['play2'].map(v => v + " *<formato> <búsqueda>*")
-handler.tags = ['descargas']
-handler.command = ['ytplay', 'play2']
-//handler.register = true 
-//handler.limit = 1
-export default handler
+        const apiUrl = `https://deliriussapi-oficial.vercel.app/download/spotifydl?url=${encodeURIComponent(url)}`;
+        const response = await fetch(apiUrl);
+        const result = await response.json();
+        
+        if (result.data.url) {
+            const downloadUrl = result.data.url;
+            const filename = `${result.data.title || 'audio'}.mp3`;
+            await conn.sendMessage(m.chat, { audio: { url: downloadUrl }, fileName: filename, mimetype: 'audio/mpeg', caption: `╭━❰  *YouTube*  ❱━⬣\n${filename}\n╰━❰ *${wm}* ❱━⬣`, quoted: m });
+        } else {
+            throw new Error('_*[ ❌ ] Ocurrió un error al descargar el archivo mp3_');
+        }
 
-function sNum(num) {
-    return new Intl.NumberFormat('en-GB', { notation: "compact", compactDisplay: "short" }).format(num)
-}
+    } catch (e) {
 
-function eYear(txt) {
-    if (!txt) {
-        return '×'
-    }
-    if (txt.includes('month ago')) {
-        var T = txt.replace("month ago", "").trim()
-        var L = 'hace '  + T + ' mes'
-        return L
-    }
-    if (txt.includes('months ago')) {
-        var T = txt.replace("months ago", "").trim()
-        var L = 'hace ' + T + ' meses'
-        return L
-    }
-    if (txt.includes('year ago')) {
-        var T = txt.replace("year ago", "").trim()
-        var L = 'hace ' + T + ' año'
-        return L
-    }
-    if (txt.includes('years ago')) {
-        var T = txt.replace("years ago", "").trim()
-        var L = 'hace ' + T + ' años'
-        return L
-    }
-    if (txt.includes('hour ago')) {
-        var T = txt.replace("hour ago", "").trim()
-        var L = 'hace ' + T + ' hora'
-        return L
-    }
-    if (txt.includes('hours ago')) {
-        var T = txt.replace("hours ago", "").trim()
-        var L = 'hace ' + T + ' horas'
-        return L
-    }
-    if (txt.includes('minute ago')) {
-        var T = txt.replace("minute ago", "").trim()
-        var L = 'hace ' + T + ' minuto'
-        return L
-    }
-    if (txt.includes('minutes ago')) {
-        var T = txt.replace("minutes ago", "").trim()
-        var L = 'hace ' + T + ' minutos'
-        return L
-    }
-    if (txt.includes('day ago')) {
-        var T = txt.replace("day ago", "").trim()
-        var L = 'hace ' + T + ' dia'
-        return L
-    }
-    if (txt.includes('days ago')) {
-        var T = txt.replace("days ago", "").trim()
-        var L = 'hace ' + T + ' dias'
-        return L
-    }
-    return txt
-}
+        await conn.reply(m.chat, `❌ _*El comando #play está fallando, repórtalo al creador del bot*_`, m);
 
-function formatNumber(number) {
-  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
-
-function toNum(number) {
-    if (number >= 1000 && number < 1000000) {
-        return (number / 1000).toFixed(1) + 'k'
-    } else if (number >= 1000000) {
-        return (number / 1000000).toFixed(1) + 'M'
-    } else if (number <= -1000 && number > -1000000) {
-        return (number / 1000).toFixed(1) + 'k'
-    } else if (number <= -1000000) {
-        return (number / 1000000).toFixed(1) + 'M'
-    } else {
-        return number.toString()
+        console.log(`❌ El comando #play está fallando`);
+        console.log(e);
     }
-}
+};
+
+handler.help = ['play'] 
+handler.tags = ['downloader']
+handler.command = ['play'];
+export default handler;
