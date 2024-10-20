@@ -1,6 +1,86 @@
-/*
-• @David-Chian
-- https://github.com/David-Chian
-*/
+import fs from 'fs';
+import dotenv from 'dotenv';
 
-const _0x55c244=_0x4035;(function(_0x4e675e,_0x431717){const _0x26aca8=_0x4035,_0x5ad689=_0x4e675e();while(!![]){try{const _0x1de0fa=-parseInt(_0x26aca8(0x17e))/0x1+-parseInt(_0x26aca8(0x162))/0x2*(-parseInt(_0x26aca8(0x168))/0x3)+parseInt(_0x26aca8(0x16b))/0x4+parseInt(_0x26aca8(0x157))/0x5+parseInt(_0x26aca8(0x172))/0x6+parseInt(_0x26aca8(0x15d))/0x7+-parseInt(_0x26aca8(0x170))/0x8;if(_0x1de0fa===_0x431717)break;else _0x5ad689['push'](_0x5ad689['shift']());}catch(_0x172961){_0x5ad689['push'](_0x5ad689['shift']());}}}(_0x309b,0xe614a));function _0x4035(_0x4244c6,_0x477461){const _0x309b05=_0x309b();return _0x4035=function(_0x4035da,_0x47081f){_0x4035da=_0x4035da-0x157;let _0x2acf38=_0x309b05[_0x4035da];return _0x2acf38;},_0x4035(_0x4244c6,_0x477461);}import _0x589ddd from'fs';import _0xec9bdf from'dotenv';_0xec9bdf[_0x55c244(0x17b)]();const SECRET_KEY=process[_0x55c244(0x184)][_0x55c244(0x15c)],obtenerDatos=()=>{const _0x1d0ac4=_0x55c244;return _0x589ddd[_0x1d0ac4(0x179)](_0x1d0ac4(0x194))?JSON[_0x1d0ac4(0x169)](_0x589ddd[_0x1d0ac4(0x17a)](_0x1d0ac4(0x194),_0x1d0ac4(0x159))):{'usuarios':{},'personajesReservados':[]};},guardarDatos=_0x19b292=>{const _0x493e32=_0x55c244;_0x589ddd[_0x493e32(0x166)](_0x493e32(0x194),JSON['stringify'](_0x19b292,null,0x2));},obtenerPersonajes=()=>{const _0x205b14=_0x55c244;return _0x589ddd[_0x205b14(0x179)]('./src/JSON/characters.json')?JSON[_0x205b14(0x169)](_0x589ddd[_0x205b14(0x17a)]('./src/JSON/characters.json',_0x205b14(0x159))):[];},tagUser=_0xc12d66=>'@'+_0xc12d66[_0x55c244(0x15f)]('@')[0x0],formatTime=_0x741c9c=>{const _0x3e7847=_0x55c244;let _0x5f12a3=Math[_0x3e7847(0x176)](_0x741c9c/0x3e8%0x3c),_0x4d8b47=Math[_0x3e7847(0x176)](_0x741c9c/0x3e8/0x3c%0x3c);return _0x4d8b47+_0x3e7847(0x188)+_0x5f12a3+_0x3e7847(0x186);};function _0x309b(){const _0x15846d=['SECRET_KEY','713468iMLXIS','characterCount','split','\x20𝒉𝒂\x20𝒓𝒐𝒃𝒂𝒅𝒐\x20𝒂:\x0a*','robarpersonaje','1560358tEgiiV','𝑬𝒍\x20𝒖𝒔𝒖𝒂𝒓𝒊𝒐\x20@','getTime','*\x0a𝑪𝒐𝒏\x20𝒖𝒏\x20𝒗𝒂𝒍𝒐𝒓\x20𝒅𝒆:\x0a','writeFileSync','totalRwcoins','6Gthkul','parse','url','7283020CMbLBO','reply','𝑫𝒆𝒃𝒆𝒔\x20𝒆𝒔𝒑𝒆𝒓𝒂𝒓\x20','image/jpeg','command','18889968CavnoA','Megumin-Bot-MD','6436602YfAiac','usuarios','PHOTO','quoted','floor','chat','characters','existsSync','readFileSync','config','lastRobTime','¡𝑷𝒆𝒓𝒔𝒐𝒏𝒂𝒋𝒆\x20𝒓𝒐𝒃𝒂𝒅𝒐!\x20😱','1674924iqCiNR','\x20𝑹𝑾𝒄𝒐𝒊𝒏𝒔\x0a𝑷𝒆𝒓𝒕𝒆𝒏𝒆𝒄𝒊𝒂\x20𝒂\x20','splice','error','repository','rollwaifu','env','𝑵𝒐\x20𝒑𝒖𝒆𝒅𝒆𝒔\x20𝒓𝒐𝒃𝒂𝒓𝒕𝒆\x20𝒂\x20𝒕𝒊\x20𝒎𝒊𝒔𝒎𝒐\x20🤨.','\x20segundos','push','\x20minutos\x20y\x20','name','value','./package.json','sender','¡𝑶𝒉\x20𝒏𝒐!\x20𝑬𝒍\x20𝒖𝒔𝒖𝒂𝒓𝒊𝒐\x20','sendMessage','𝑬𝒔𝒕𝒆\x20𝒄𝒐𝒎𝒂𝒏𝒅𝒐\x20𝒔𝒐𝒍𝒐\x20𝒆𝒔𝒕𝒂\x20𝒅𝒊𝒔𝒑𝒐𝒏𝒊𝒃𝒍𝒆\x20𝒑𝒂𝒓𝒂\x20𝑴𝒆𝒈𝒖𝒎𝒊𝒏\x20𝑩𝒐𝒕.\x0a\x20🔥\x20https://github.com/David-Chian/Megumin-Bot-MD','register','length','\x20𝒏𝒐\x20𝒕𝒊𝒆𝒏𝒆\x20𝒑𝒆𝒓𝒔𝒐𝒏𝒂𝒋𝒆𝒔\x20𝒒𝒖𝒆\x20𝒑𝒖𝒆𝒅𝒂𝒔\x20𝒓𝒐𝒃𝒂𝒓\x0a\x20(ू˃̣̣̣̣̣̣︿˂̣̣̣̣̣̣\x20ू).','\x20𝒂𝒏𝒕𝒆𝒔\x20𝒅𝒆\x20𝒊𝒏𝒕𝒆𝒏𝒕𝒂𝒓\x20𝒓𝒐𝒃𝒂𝒓\x20𝒅𝒆\x20𝒏𝒖𝒆𝒗𝒐.','data.json','robarp','2113880YdmjHS','mentionedJid','utf-8','Error\x20al\x20leer\x20package.json:','𝑷𝒐𝒓\x20𝒇𝒂𝒗𝒐𝒓,\x20𝒎𝒆𝒏𝒄𝒊𝒐𝒏𝒂\x20𝒂\x20𝒖𝒏\x20𝒖𝒔𝒖𝒂𝒓𝒊𝒐\x20𝒐\x20𝒓𝒆𝒔𝒑𝒐𝒏𝒅𝒆\x20𝒂\x20𝒖𝒏\x20𝒎𝒆𝒏𝒔𝒂𝒋𝒆\x20𝒅𝒆𝒍\x20𝒖𝒔𝒖𝒂𝒓𝒊𝒐\x20𝒂𝒍\x20𝒒𝒖𝒆\x20𝒅𝒆𝒔𝒆𝒂𝒔\x20𝒓𝒐𝒃𝒂𝒓.'];_0x309b=function(){return _0x15846d;};return _0x309b();}let handler=async(_0xf836d,{conn:_0x1c2393})=>{const _0x234219=_0x55c244;let _0x125d4f=obtenerDatos(),_0x522f42=obtenerPersonajes(),_0x3aa2fc=_0xf836d[_0x234219(0x18c)],_0x3cd078=new Date()[_0x234219(0x164)]();const _0x95aa18=0x3c*0x3c*0x3e8;let _0x3c9878=_0xf836d[_0x234219(0x158)]&&_0xf836d[_0x234219(0x158)][0x0]?_0xf836d[_0x234219(0x158)][0x0]:_0xf836d[_0x234219(0x175)]&&_0xf836d['quoted'][_0x234219(0x18c)]?_0xf836d[_0x234219(0x175)][_0x234219(0x18c)]:null;if(!_0x3c9878){_0x1c2393[_0x234219(0x16c)](_0xf836d[_0x234219(0x177)],_0x234219(0x15b),_0xf836d,rcanal);return;}const _0xa6d58d=()=>{const _0xeb3fa0=_0x234219;try{const _0x1e3775=JSON[_0xeb3fa0(0x169)](_0x589ddd['readFileSync'](_0xeb3fa0(0x18b),_0xeb3fa0(0x159)));if(_0x1e3775[_0xeb3fa0(0x189)]!==_0xeb3fa0(0x171))return![];if(_0x1e3775[_0xeb3fa0(0x182)][_0xeb3fa0(0x16a)]!=='git+https://github.com/David-Chian/Megumin-Bot-MD.git')return![];if(SECRET_KEY!=='49rof384foerAlkkO4KF4Tdfoflw')return![];return!![];}catch(_0xf7941b){return console[_0xeb3fa0(0x181)](_0xeb3fa0(0x15a),_0xf7941b),![];}};if(!_0xa6d58d()){await _0x1c2393[_0x234219(0x16c)](_0xf836d[_0x234219(0x177)],_0x234219(0x18f),_0xf836d,rcanal);return;}if(_0x3c9878===_0x3aa2fc){_0x1c2393[_0x234219(0x16c)](_0xf836d[_0x234219(0x177)],_0x234219(0x185),_0xf836d,rcanal);return;}let _0x13e1ae=_0x125d4f['usuarios'][_0x3aa2fc]||{'characters':[],'totalRwcoins':0x0,'lastRobTime':0x0};if(_0x3cd078-_0x13e1ae[_0x234219(0x17c)]<_0x95aa18){let _0x2d8595=_0x95aa18-(_0x3cd078-_0x13e1ae[_0x234219(0x17c)]),_0x4fa4cf=formatTime(_0x2d8595);_0x1c2393[_0x234219(0x16c)](_0xf836d[_0x234219(0x177)],_0x234219(0x16d)+_0x4fa4cf+_0x234219(0x193),_0xf836d,rcanal);return;}let _0x27b09c=_0x125d4f['usuarios'][_0x3c9878];if(!_0x27b09c||!_0x27b09c[_0x234219(0x178)]||_0x27b09c[_0x234219(0x178)][_0x234219(0x191)]===0x0){_0x1c2393[_0x234219(0x16c)](_0xf836d[_0x234219(0x177)],_0x234219(0x163)+_0x3c9878[_0x234219(0x15f)]('@')[0x0]+_0x234219(0x192),_0xf836d,{'mentions':[_0x3c9878]});return;}let _0x441724=Math[_0x234219(0x176)](Math['random']()*_0x27b09c[_0x234219(0x178)]['length']),_0x39d44d=_0x27b09c[_0x234219(0x178)][_0x441724];_0x27b09c[_0x234219(0x178)][_0x234219(0x180)](_0x441724,0x1),_0x27b09c[_0x234219(0x15e)]=_0x27b09c[_0x234219(0x178)][_0x234219(0x191)];let _0x45898d=await _0x1c2393['getName'](_0x3aa2fc)||_0x3aa2fc[_0x234219(0x15f)]('@')[0x0],_0x5493b6=await _0x1c2393['getName'](_0x3c9878)||_0x3c9878['split']('@')[0x0];if(!_0x13e1ae[_0x234219(0x178)])_0x13e1ae[_0x234219(0x178)]=[];_0x13e1ae[_0x234219(0x178)][_0x234219(0x187)](_0x39d44d),_0x13e1ae[_0x234219(0x167)]=(_0x13e1ae[_0x234219(0x167)]||0x0)+_0x39d44d[_0x234219(0x18a)],_0x13e1ae[_0x234219(0x17c)]=_0x3cd078,_0x13e1ae[_0x234219(0x15e)]=_0x13e1ae['characters'][_0x234219(0x191)],_0x125d4f[_0x234219(0x173)][_0x3c9878]=_0x27b09c,_0x125d4f['usuarios'][_0x3aa2fc]=_0x13e1ae,guardarDatos(_0x125d4f);const _0x1a1fbb=_0x234219(0x18d)+_0x45898d+_0x234219(0x160)+_0x39d44d[_0x234219(0x189)]+_0x234219(0x165)+_0x39d44d[_0x234219(0x18a)]+_0x234219(0x17f)+_0x5493b6;await _0x1c2393[_0x234219(0x18e)](_0xf836d[_0x234219(0x177)],{'image':{'url':_0x39d44d['url']},'caption':_0x1a1fbb,'mentions':[_0x3aa2fc,_0x3c9878],'mimetype':_0x234219(0x16e),'contextInfo':{'isForwarded':!![],'forwardedNewsletterMessageInfo':{'newsletterJid':'120363307382381547@newsletter','serverMessageId':0x64,'newsletterName':namechannel},'externalAdReply':{'showAdAttribution':!![],'title':_0x234219(0x17d),'body':'💥\x20ꜟᴱˡ\x20ᵇᵒᵗ\x20ᵐᵃˢ\x20ᵉˣᵖˡᵒˢⁱᵛᵒꜝ','thumbnailUrl':_0x39d44d[_0x234219(0x16a)],'sourceUrl':redes,'previewType':_0x234219(0x174),'mediaType':0x1,'renderLargerThumbnail':![]}}});};handler['help']=[_0x55c244(0x161)],handler['tags']=[_0x55c244(0x183)],handler[_0x55c244(0x16f)]=[_0x55c244(0x161),_0x55c244(0x195),'robarrw'],handler[_0x55c244(0x190)]=!![],handler['group']=!![];export default handler;
+// Cargar variables de entorno
+dotenv.config();
+const SECRET_KEY = process.env.SECRET_KEY;
+
+// Función para obtener datos
+const obtenerDatos = () => {
+    return fs.existsSync('data.json') ? JSON.parse(fs.readFileSync('data.json', 'utf-8')) : { 'usuarios': {}, 'personajesReservados': [] };
+};
+
+// Función para guardar datos
+const guardarDatos = (data) => {
+    fs.writeFileSync('data.json', JSON.stringify(data, null, 2));
+};
+
+// Función para obtener personajes
+const obtenerPersonajes = () => {
+    return fs.existsSync('./src/JSON/characters.json') ? JSON.parse(fs.readFileSync('./src/JSON/characters.json', 'utf-8')) : [];
+};
+
+// Función para etiquetar usuarios
+const tagUser = (user) => '@' + user.split('@')[0];
+
+// Función para formatear tiempo
+const formatTime = (time) => {
+    let minutes = Math.floor(time / 1000 % 60);
+    let seconds = Math.floor(time / 1000 / 60 % 60);
+    return minutes + ' minutos y ' + seconds + ' segundos';
+};
+
+// Handler principal
+let handler = async (message, { conn }) => {
+    let data = obtenerDatos();
+    let personajes = obtenerPersonajes();
+    let userId = message.mentionedJid && message.mentionedJid[0] ? message.mentionedJid[0] : message.quoted && message.quoted.mentionedJid ? message.quoted.mentionedJid : null;
+
+    if (!userId) {
+        conn.reply(message.from, '¡Debes mencionar a un usuario!', message);
+        return;
+    }
+
+    // Verificación de datos
+    let userData = data.usuarios[userId] || { 'characters': [], 'totalRwcoins': 0, 'lastRobTime': 0 };
+    let currentTime = new Date().getTime();
+    const coolDownTime = 3600000; // 1 hora en milisegundos
+
+    if (currentTime - userData.lastRobTime < coolDownTime) {
+        let waitTime = coolDownTime - (currentTime - userData.lastRobTime);
+        let formattedWaitTime = formatTime(waitTime);
+        conn.reply(message.from, `Debes esperar ${formattedWaitTime} antes de robar de nuevo.`, message);
+        return;
+    }
+
+    // Lógica para robar personajes
+    let availableCharacters = userData.characters;
+    if (!availableCharacters.length) {
+        conn.reply(message.from, `No tienes personajes disponibles para robar.`, message);
+        return;
+    }
+
+    let randomIndex = Math.floor(Math.random() * availableCharacters.length);
+    let stolenCharacter = availableCharacters[randomIndex];
+    availableCharacters.splice(randomIndex, 1);
+    
+    userData.characters.push(stolenCharacter);
+    userData.totalRwcoins += stolenCharacter.value; // Asumiendo que los personajes tienen un valor
+    userData.lastRobTime = currentTime;
+
+    data.usuarios[userId] = userData;
+    guardarDatos(data);
+
+    conn.sendMessage(message.from, {
+        image: { url: stolenCharacter.url }, // Suponiendo que el objeto tiene una propiedad url
+        caption: `¡Has robado a ${stolenCharacter.name}! Tienes ahora ${userData.totalRwcoins} RWcoins.`,
+        mentions: [userId]
+    });
+};
+
+handler.help = ['robar'];
+handler.tags = ['economía'];
+handler.command = ['robar'];
+handler.group = true;
+
+export default handler;

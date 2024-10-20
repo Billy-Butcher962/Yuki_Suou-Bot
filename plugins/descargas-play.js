@@ -1,113 +1,155 @@
 import fetch from 'node-fetch'
-import yts from 'yt-search'
+import ytdl from 'youtubedl-core'
+import yts from 'youtube-yts'
+import fs from 'fs'
+import { pipeline } from 'stream'
+import { promisify } from 'util'
+import os from 'os'
 
-let handler = async (m, { conn: star, command, args, text, usedPrefix }) => {
-  if (!text) return star.reply(m.chat, '🚩 Ingresa el título de un video o canción de YouTube.\n\n`Ejemplo:`\n' + `> *${usedPrefix + command}* Gemini Aaliyah - If Only`, m, rcanal)
-    await m.react('🕓')
-    try {
-    let res = await search(args.join(" "))
-    let img = await (await fetch(`${res[0].image}`)).buffer()
-    let txt = '`乂  Y O U T U B E  -  P L A Y`\n\n'
-       txt += `	✩   *Título* : ${res[0].title}\n`
-       txt += `	✩   *Duración* : ${secondString(res[0].duration.seconds)}\n`
-       txt += `	✩   *Publicado* : ${eYear(res[0].ago)}\n`
-       txt += `	✩   *Canal* : ${res[0].author.name || 'Desconocido'}\n`
-       txt += `	✩   *Url* : ${'https://youtu.be/' + res[0].videoId}\n\n`
-       txt += `> *-* Para descargar responde a este mensaje con *Video* o *Audio*.`
-await star.sendFile(m.chat, img, 'thumbnail.jpg', txt, m, null, rcanal)
-await m.react('✅')
-} catch {
-await m.react('✖️')
-}}
-handler.help = ['play *<búsqueda>*']
-handler.tags = ['descargas']
-handler.command = ['play']
-//handler.register = true 
+const streamPipeline = promisify(pipeline)
+
+const handler = async (m, { conn, command, text, args, usedPrefix }) => {
+  if (!text) throw `give a text to search Example: *${usedPrefix + command}* sefali odia song`
+  conn.GURUPLAY = conn.GURUPLAY ? conn.GURUPLAY : {}
+  await conn.reply(m.chat, wait, m)
+  const result = await searchAndDownloadMusic(text)
+  const infoText = `✦ ──『 *GURU PLAYER* 』── ⚝ \n\n [ ⭐ Reply the number of the desired search result to get the Audio]. \n\n`
+
+  const orderedLinks = result.allLinks.map((link, index) => {
+    const sectionNumber = index + 1
+    const { title, url } = link
+    return `*${sectionNumber}.* ${title}`
+  })
+
+  const orderedLinksText = orderedLinks.join('\n\n')
+  const fullText = `${infoText}\n\n${orderedLinksText}`
+  const { key } = await conn.reply(m.chat, fullText, m)
+  conn.GURUPLAY[m.sender] = {
+    result,
+    key,
+    timeout: setTimeout(() => {
+      conn.sendMessage(m.chat, {
+        delete: key,
+      })
+      delete conn.GURUPLAY[m.sender]
+    }, 150 * 1000),
+  }
+}
+
+handler.before = async (m, { conn }) => {
+  conn.GURUPLAY = conn.GURUPLAY ? conn.GURUPLAY : {}
+  if (m.isBaileys || !(m.sender in conn.GURUPLAY)) return
+  const { result, key, timeout } = conn.GURUPLAY[m.sender]
+
+  if (!m.quoted || m.quoted.id !== key.id || !m.text) return
+  const choice = m.text.trim()
+  const inputNumber = Number(choice)
+  if (inputNumber >= 1 && inputNumber <= result.allLinks.length) {
+    const selectedUrl = result.allLinks[inputNumber - 1].url
+    console.log('selectedUrl', selectedUrl)
+    let title = generateRandomName()
+    const audioStream = ytdl(selectedUrl, {
+      filter: 'audioonly',
+      quality: 'highestaudio',
+    })
+
+    const tmpDir = os.tmpdir()
+
+    const writableStream = fs.createWriteStream(`${tmpDir}/${title}.mp3`)
+
+    await streamPipeline(audioStream, writableStream)
+
+    const doc = {
+      audio: {
+        url: `${tmpDir}/${title}.mp3`,
+      },
+      mimetype: 'audio/mpeg',
+      ptt: false,
+      waveform: [100, 0, 0, 0, 0, 0, 100],
+      fileName: `${title}`,
+    }
+
+    await conn.sendMessage(m.chat, doc, { quoted: m })
+  } else {
+    m.reply(
+      'Invalid sequence number. Please select the appropriate number from the list above.\nBetween 1 to ' +
+        result.allLinks.length
+    )
+  }
+}
+
+handler.help = ['play']
+handler.tags = ['downloader']
+handler.command = /^(play)$/i
+handler.limit = true
 export default handler
 
-async function search(query, options = {}) {
-  let search = await yts.search({ query, hl: "es", gl: "ES", ...options })
-  return search.videos
+function formatBytes(bytes, decimals = 2) {
+  if (bytes === 0) return '0 B'
+  const k = 1024
+  const dm = decimals < 0 ? 0 : decimals
+  const sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
+  const i = Math.floor(Math.log(bytes) / Math.log(k))
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i]
 }
 
-function MilesNumber(number) {
-  let exp = /(\d)(?=(\d{3})+(?!\d))/g
-  let rep = "$1."
-  let arr = number.toString().split(".")
-  arr[0] = arr[0].replace(exp, rep)
-  return arr[1] ? arr.join(".") : arr[0]
+async function searchAndDownloadMusic(query) {
+  try {
+    const { videos } = await yts(query)
+    if (!videos.length) return 'Sorry, no video results were found for this search.'
+
+    const allLinks = videos.map(video => ({
+      title: video.title,
+      url: video.url,
+    }))
+
+    const jsonData = {
+      title: videos[0].title,
+      description: videos[0].description,
+      duration: videos[0].duration,
+      author: videos[0].author.name,
+      allLinks: allLinks,
+      videoUrl: videos[0].url,
+      thumbnail: videos[0].thumbnail,
+    }
+
+    return jsonData
+  } catch (error) {
+    return 'Error: ' + error.message
+  }
 }
 
-function secondString(seconds) {
-  seconds = Number(seconds);
-  const d = Math.floor(seconds / (3600 * 24));
-  const h = Math.floor((seconds % (3600 * 24)) / 3600);
-  const m = Math.floor((seconds % 3600) / 60);
-  const s = Math.floor(seconds % 60);
-  const dDisplay = d > 0 ? d + (d == 1 ? ' Día, ' : ' Días, ') : '';
-  const hDisplay = h > 0 ? h + (h == 1 ? ' Hora, ' : ' Horas, ') : '';
-  const mDisplay = m > 0 ? m + (m == 1 ? ' Minuto, ' : ' Minutos, ') : '';
-  const sDisplay = s > 0 ? s + (s == 1 ? ' Segundo' : ' Segundos') : '';
-  return dDisplay + hDisplay + mDisplay + sDisplay;
+async function fetchVideoBuffer() {
+  try {
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      },
+    })
+    return await response.buffer()
+  } catch (error) {
+    return null
+  }
 }
 
-function sNum(num) {
-    return new Intl.NumberFormat('en-GB', { notation: "compact", compactDisplay: "short" }).format(num)
-}
+function generateRandomName() {
+  const adjectives = [
+    'happy',
+    'sad',
+    'funny',
+    'brave',
+    'clever',
+    'kind',
+    'silly',
+    'wise',
+    'gentle',
+    'bold',
+  ]
+  const nouns = ['cat', 'dog', 'bird', 'tree', 'river', 'mountain', 'sun', 'moon', 'star', 'cloud']
 
-function eYear(txt) {
-    if (!txt) {
-        return '×'
-    }
-    if (txt.includes('month ago')) {
-        var T = txt.replace("month ago", "").trim()
-        var L = 'hace '  + T + ' mes'
-        return L
-    }
-    if (txt.includes('months ago')) {
-        var T = txt.replace("months ago", "").trim()
-        var L = 'hace ' + T + ' meses'
-        return L
-    }
-    if (txt.includes('year ago')) {
-        var T = txt.replace("year ago", "").trim()
-        var L = 'hace ' + T + ' año'
-        return L
-    }
-    if (txt.includes('years ago')) {
-        var T = txt.replace("years ago", "").trim()
-        var L = 'hace ' + T + ' años'
-        return L
-    }
-    if (txt.includes('hour ago')) {
-        var T = txt.replace("hour ago", "").trim()
-        var L = 'hace ' + T + ' hora'
-        return L
-    }
-    if (txt.includes('hours ago')) {
-        var T = txt.replace("hours ago", "").trim()
-        var L = 'hace ' + T + ' horas'
-        return L
-    }
-    if (txt.includes('minute ago')) {
-        var T = txt.replace("minute ago", "").trim()
-        var L = 'hace ' + T + ' minuto'
-        return L
-    }
-    if (txt.includes('minutes ago')) {
-        var T = txt.replace("minutes ago", "").trim()
-        var L = 'hace ' + T + ' minutos'
-        return L
-    }
-    if (txt.includes('day ago')) {
-        var T = txt.replace("day ago", "").trim()
-        var L = 'hace ' + T + ' dia'
-        return L
-    }
-    if (txt.includes('days ago')) {
-        var T = txt.replace("days ago", "").trim()
-        var L = 'hace ' + T + ' dias'
-        return L
-    }
-    return txt
+  const randomAdjective = adjectives[Math.floor(Math.random() * adjectives.length)]
+  const randomNoun = nouns[Math.floor(Math.random() * nouns.length)]
+
+  return randomAdjective + '-' + randomNoun
 }

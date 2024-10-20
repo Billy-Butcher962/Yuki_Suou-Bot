@@ -1,6 +1,132 @@
-/*
-• @David-Chian
-- https://github.com/David-Chian
-*/
+import fs from 'fs';
+import { v4 as uuidv4 } from 'uuid';
+import dotenv from 'dotenv';
 
-const _0x16d166=_0x3b2a;(function(_0x476996,_0x553d36){const _0x360e01=_0x3b2a,_0x8f1677=_0x476996();while(!![]){try{const _0x8ec2d5=-parseInt(_0x360e01(0x6f))/0x1+-parseInt(_0x360e01(0x75))/0x2*(parseInt(_0x360e01(0xa1))/0x3)+-parseInt(_0x360e01(0x97))/0x4*(parseInt(_0x360e01(0x96))/0x5)+parseInt(_0x360e01(0xae))/0x6*(parseInt(_0x360e01(0x92))/0x7)+-parseInt(_0x360e01(0xa6))/0x8+-parseInt(_0x360e01(0xa4))/0x9+parseInt(_0x360e01(0xa7))/0xa*(parseInt(_0x360e01(0x8b))/0xb);if(_0x8ec2d5===_0x553d36)break;else _0x8f1677['push'](_0x8f1677['shift']());}catch(_0x27165c){_0x8f1677['push'](_0x8f1677['shift']());}}}(_0x2d98,0xa096b));import _0x407d52 from'fs';import{v4 as _0x1ca4f7}from'uuid';import _0x460edd from'dotenv';function _0x3b2a(_0x5d5078,_0x482adc){const _0x2d9835=_0x2d98();return _0x3b2a=function(_0x3b2a47,_0x32ea71){_0x3b2a47=_0x3b2a47-0x6e;let _0x46610e=_0x2d9835[_0x3b2a47];return _0x46610e;},_0x3b2a(_0x5d5078,_0x482adc);}function _0x2d98(){const _0x3ad8a2=['294Bnoawz','some','Ocupado\x20por\x20','286829nEbnGL','url','register','roll','\x20𝑴𝒊𝒏𝒖𝒕𝒐𝒔\x20𝒚\x20','!*\x0a┃\x0a┃\x20⌜✧⌟\x20\x20╌\x20𝙑𝙖𝙡𝙤𝙧\x20╌\x0a┃⋗\x20*','1631006OPufuV','𝑭𝒆𝒍𝒊𝒄𝒊𝒅𝒂𝒅𝒆𝒔,\x20𝒕𝒐𝒅𝒐𝒔\x20𝒍𝒐𝒔\x20𝒑𝒆𝒓𝒔𝒐𝒏𝒂𝒋𝒆𝒔\x20𝒉𝒂𝒏\x20𝒔𝒊𝒅𝒐\x20𝒐𝒃𝒕𝒆𝒏𝒊𝒅𝒐𝒔.\x20¡𝑷𝒓𝒐𝒏𝒕𝒐\x20𝒉𝒂𝒃𝒓𝒂\x20𝒎𝒂𝒔\x20𝒘𝒂𝒊𝒇𝒖𝒔\x20𝒑𝒂𝒓𝒂\x20𝒓𝒆𝒄𝒐𝒍𝒆𝒄𝒕𝒂𝒓!','usuarios','Megumin-Bot-MD','parse','PHOTO','error','chat','value','group','find','rollwaifu','random','./src/completado.jpg','Error\x20al\x20leer\x20characters.json:','sender','existsSync','getTime','Reservado\x20por\x20','./src/JSON/characters.json','¡𝐸𝑠𝑝𝑒𝑟𝑎\x20𝑢𝑛\x20𝑝𝑜𝑐𝑜\x20𝑚𝑎𝑠\x20𝑝𝑎𝑟𝑎\x20𝑝𝑜𝑑𝑒𝑟\x20𝑢𝑠𝑎𝑟\x20𝑒𝑠𝑡𝑒\x20𝑐𝑜𝑚𝑎𝑛𝑑𝑜!\x0a\x0a*𝑻𝒊𝒆𝒎𝒑𝒐\x20𝒓𝒆𝒔𝒕𝒂𝒏𝒕𝒆\x20','characters','25043381PrIdjW','💥\x20ꜟᴱˡ\x20ᵇᵒᵗ\x20ᵐᵃˢ\x20ᵉˣᵖˡᵒˢⁱᵛᵒꜝ','Error\x20en\x20el\x20handler:','env','writeFileSync','*\x0a╰┈︨︩︣︢─┉̱╍̄╼⪻〄⪼╾̄╍̱┅─︩︪︢︣┈╯\x0a\x0a>\x20⌜★⌟\x20\x20\x20\x20\x20𝙄𝙙𝙚𝙣𝙩𝙞𝙛𝙞𝙘𝙖𝙙𝙤𝙧\x0a<id:','𝑶𝒄𝒖𝒓𝒓𝒊𝒐\x20𝒖𝒏\x20𝒆𝒓𝒓𝒐𝒓\x20𝒂𝒍\x20𝒑𝒓𝒐𝒄𝒆𝒔𝒂𝒓\x20𝒕𝒖\x20𝒔𝒐𝒍𝒊𝒄𝒊𝒕𝒖𝒅.\x20𝑰𝒏𝒕𝒆𝒏𝒕𝒂\x20𝒅𝒆\x20𝒏𝒖𝒆𝒗𝒐\x20𝒎𝒂𝒔\x20𝒕𝒂𝒓𝒅𝒆.\x20','130844JgvHWK','Error\x20al\x20leer\x20package.json:','entries','command','2860JQUigD','4124UYOhcJ','name','push','SECRET_KEY','data.json','length','stringify','\x20꯭\x20⌜꯭✮꯭⌟\x20\x20꯭╍꯭𝙍꯭𝙤𝙡꯭𝙡𝙒꯭𝙖𝙞𝙛꯭𝙪꯭╍꯭\x20\x20\x20꯭\x20\x20\x20\x20꯭\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x0a╭┈︨︩︣︢─┉̱╍̄╼⪻⪼╾̄╍̱┅─︩︪︢︣┈╮\x0a┃\x20⌍⛧⌎\x20\x20╌\x20𝙉𝙤𝙢𝙗𝙧𝙚\x20╌\x0a┃⋗\x20*','personajesReservados','𝑬𝒔𝒕𝒆\x20𝒄𝒐𝒎𝒂𝒏𝒅𝒐\x20𝒔𝒐𝒍𝒐\x20𝒆𝒔𝒕𝒂\x20𝒅𝒊𝒔𝒑𝒐𝒏𝒊𝒃𝒍𝒆\x20𝒑𝒂𝒓𝒂\x20𝑴𝒆𝒈𝒖𝒎𝒊𝒏-𝑩𝒐𝒕-𝑴𝑫.\x0a\x20🔥\x20https://github.com/David-Chian/Megumin-Bot-MD','3VdRLmz','\x20𝑺𝒆𝒈𝒖𝒏𝒅𝒐𝒔.*','floor','1206810euyohc','filter','5669232mBcxAI','10ZhSDWm','readFileSync','values','reply','Libre','tags','sendMessage'];_0x2d98=function(){return _0x3ad8a2;};return _0x2d98();}_0x460edd['config']();const SECRET_KEY=process[_0x16d166(0x8e)][_0x16d166(0x9a)],completadoImage=_0x16d166(0x82),obtenerDatos=()=>{const _0x5aef55=_0x16d166;try{return _0x407d52[_0x5aef55(0x85)]('data.json')?JSON[_0x5aef55(0x79)](_0x407d52[_0x5aef55(0xa8)]('data.json','utf-8')):{'usuarios':{},'personajesReservados':[]};}catch(_0x2dfcf9){return console['error']('Error\x20al\x20leer\x20data.json:',_0x2dfcf9),{'usuarios':{},'personajesReservados':[]};}},guardarDatos=_0x163ee5=>{const _0x2b7248=_0x16d166;try{_0x407d52[_0x2b7248(0x8f)](_0x2b7248(0x9b),JSON[_0x2b7248(0x9d)](_0x163ee5,null,0x2));}catch(_0x241664){console[_0x2b7248(0x7b)]('Error\x20al\x20escribir\x20en\x20data.json:',_0x241664);}},reservarPersonaje=(_0x90b6b5,_0x60ec10)=>{const _0x5cf758=_0x16d166;let _0x5ed9d3=obtenerDatos();_0x5ed9d3['personajesReservados'][_0x5cf758(0x99)]({'userId':_0x90b6b5,..._0x60ec10}),guardarDatos(_0x5ed9d3);},obtenerPersonajes=()=>{const _0x2d18bd=_0x16d166;try{return JSON['parse'](_0x407d52[_0x2d18bd(0xa8)](_0x2d18bd(0x88),'utf-8'));}catch(_0x1b691b){return console['error'](_0x2d18bd(0x83),_0x1b691b),[];}};let cooldowns={},handler=async(_0x1b4230,{conn:_0x38800c})=>{const _0x28a983=_0x16d166;try{let _0x5499dd=_0x1b4230[_0x28a983(0x84)],_0xc90742=new Date()[_0x28a983(0x86)](),_0x168a4c=0xa*0x3c*0x3e8,_0x29c69e=cooldowns[_0x5499dd]||0x0,_0x15d735=_0xc90742-_0x29c69e;if(_0x15d735<_0x168a4c){let _0x5007c1=_0x168a4c-_0x15d735,_0x6db307=Math[_0x28a983(0xa3)](_0x5007c1/(0x3e8*0x3c)),_0x1aff48=Math[_0x28a983(0xa3)](_0x5007c1%(0x3e8*0x3c)/0x3e8),_0x46d2b2=_0x28a983(0x89)+_0x6db307+_0x28a983(0x73)+_0x1aff48+_0x28a983(0xa2);await _0x38800c['sendMessage'](_0x1b4230[_0x28a983(0x7c)],{'text':_0x46d2b2});return;}const _0x276154=()=>{const _0x2dfc37=_0x28a983;try{const _0x5decb1=JSON[_0x2dfc37(0x79)](_0x407d52[_0x2dfc37(0xa8)]('./package.json','utf-8'));if(_0x5decb1[_0x2dfc37(0x98)]!==_0x2dfc37(0x78))return![];if(_0x5decb1['repository'][_0x2dfc37(0x70)]!=='git+https://github.com/David-Chian/Megumin-Bot-MD.git')return![];if(SECRET_KEY!=='49rof384foerAlkkO4KF4Tdfoflw')return![];return!![];}catch(_0x1bd5b5){return console[_0x2dfc37(0x7b)](_0x2dfc37(0x93),_0x1bd5b5),![];}};if(!_0x276154()){await _0x38800c[_0x28a983(0xaa)](_0x1b4230[_0x28a983(0x7c)],_0x28a983(0xa0),_0x1b4230,rcanal);return;}let _0xbc911f=obtenerDatos(),_0x47c678=obtenerPersonajes(),_0x361d43=_0x47c678[_0x28a983(0xa5)](_0x35fbc8=>{const _0x51c8f8=_0x28a983;let _0x34ef36=_0xbc911f[_0x51c8f8(0x9f)][_0x51c8f8(0xaf)](_0x34de04=>_0x34de04[_0x51c8f8(0x70)]===_0x35fbc8[_0x51c8f8(0x70)]),_0x42edc6=Object[_0x51c8f8(0xa9)](_0xbc911f[_0x51c8f8(0x77)])['some'](_0x531940=>_0x531940[_0x51c8f8(0x8a)][_0x51c8f8(0xaf)](_0x1803e3=>_0x1803e3[_0x51c8f8(0x70)]===_0x35fbc8['url']));return!_0x34ef36&&!_0x42edc6;});if(_0x361d43[_0x28a983(0x9c)]===0x0){await _0x38800c[_0x28a983(0xad)](_0x1b4230['chat'],{'image':{'url':completadoImage},'caption':_0x28a983(0x76)});return;}const _0x58c83c=_0x361d43[Math[_0x28a983(0xa3)](Math[_0x28a983(0x81)]()*_0x361d43['length'])],_0xa5b04=_0x1ca4f7();let _0x4b2617=_0xbc911f[_0x28a983(0x9f)]['find'](_0x8cdb06=>_0x8cdb06[_0x28a983(0x70)]===_0x58c83c[_0x28a983(0x70)]),_0x22fbf8=Object[_0x28a983(0x94)](_0xbc911f[_0x28a983(0x77)])[_0x28a983(0x7f)](([_0x5770c8,_0x26f234])=>_0x26f234[_0x28a983(0x8a)]['some'](_0x1be3d1=>_0x1be3d1[_0x28a983(0x70)]===_0x58c83c[_0x28a983(0x70)])),_0xe16732;if(_0x22fbf8)_0xe16732=_0x28a983(0x6e)+_0x22fbf8[0x1][_0x28a983(0x98)];else _0x4b2617?_0xe16732=_0x28a983(0x87)+_0x4b2617['userId']:_0xe16732=_0x28a983(0xab);const _0x687340=_0x28a983(0x9e)+_0x58c83c['name']+_0x28a983(0x74)+_0x58c83c[_0x28a983(0x7d)]+'*\x20𝙒𝙁𝙘𝙤𝙞𝙣𝙨!\x0a┃\x0a┃\x20⌜✷⌟\x20╌\x20𝞝𝙨𝙩𝙖𝙙𝙤\x20╌\x0a┃⋗\x20*Estado:\x20'+_0xe16732+_0x28a983(0x90)+_0xa5b04+'>';await _0x38800c[_0x28a983(0xad)](_0x1b4230[_0x28a983(0x7c)],{'image':{'url':_0x58c83c[_0x28a983(0x70)]},'caption':_0x687340,'mimetype':'image/jpeg','contextInfo':{'mentionedJid':_0x22fbf8?[_0x22fbf8[0x1]]:[],'externalAdReply':{'showAdAttribution':!![],'title':'¡𝑵𝒖𝒆𝒗𝒐\x20𝒑𝒆𝒓𝒔𝒐𝒏𝒂𝒋𝒆!','body':_0x28a983(0x8c),'thumbnailUrl':_0x58c83c[_0x28a983(0x70)],'sourceUrl':redes,'previewType':_0x28a983(0x7a),'mediaType':0x1,'renderLargerThumbnail':![]}}}),!_0x22fbf8&&reservarPersonaje(_0x5499dd,{..._0x58c83c,'id':_0xa5b04}),cooldowns[_0x5499dd]=_0xc90742,console['log']('Cooldown\x20actualizado\x20para\x20'+_0x5499dd+':\x20'+cooldowns[_0x5499dd]);}catch(_0x4b6bbc){console[_0x28a983(0x7b)](_0x28a983(0x8d),_0x4b6bbc),await _0x38800c[_0x28a983(0xad)](_0x1b4230['chat'],{'text':_0x28a983(0x91)+_0x4b6bbc});}};handler['help']=[_0x16d166(0x72)],handler[_0x16d166(0xac)]=[_0x16d166(0x80)],handler[_0x16d166(0x95)]=['roll','rw'],handler[_0x16d166(0x71)]=!![],handler[_0x16d166(0x7e)]=!![];export default handler;
+dotenv.config();
+const SECRET_KEY = process.env.SECRET_KEY;
+const completadoImage = './src/completado.jpg';
+
+// Función para obtener datos desde un archivo JSON
+const obtenerDatos = () => {
+    try {
+        return fs.existsSync('data.json') ? JSON.parse(fs.readFileSync('data.json', 'utf-8')) : { 'usuarios': {}, 'personajesReservados': [] };
+    } catch (error) {
+        console.error('Error al leer data.json:', error);
+        return { 'usuarios': {}, 'personajesReservados': [] };
+    }
+};
+
+// Función para guardar datos en un archivo JSON
+const guardarDatos = (data) => {
+    try {
+        fs.writeFileSync('data.json', JSON.stringify(data, null, 2));
+    } catch (error) {
+        console.error('Error al escribir en data.json:', error);
+    }
+};
+
+// Función para reservar un personaje
+const reservarPersonaje = (userId, character) => {
+    let data = obtenerDatos();
+    data.personajesReservados.push({ userId, ...character });
+    guardarDatos(data);
+};
+
+// Función para obtener personajes desde un archivo JSON
+const obtenerPersonajes = () => {
+    try {
+        return JSON.parse(fs.readFileSync('./src/JSON/characters.json', 'utf-8'));
+    } catch (error) {
+        console.error('Error al leer characters.json:', error);
+        return [];
+    }
+};
+
+let cooldowns = {};
+
+let handler = async (message, { conn }) => {
+    try {
+        let userId = message.sender;
+        let currentTime = new Date().getTime();
+        const cooldownDuration = 10 * 60 * 1000; // 10 minutos
+        let userCooldown = cooldowns[userId] || 0;
+        let timeSinceLastRoll = currentTime - userCooldown;
+
+        if (timeSinceLastRoll < cooldownDuration) {
+            let remainingTime = cooldownDuration - timeSinceLastRoll;
+            let minutes = Math.floor(remainingTime / (60 * 1000));
+            let seconds = Math.floor((remainingTime % (60 * 1000)) / 1000);
+            let replyMessage = `¡Espera ${minutes} minutos y ${seconds} segundos antes de usar el comando de nuevo!`;
+            await conn.sendMessage(message.chat, { text: replyMessage });
+            return;
+        }
+
+        const checkPackage = () => {
+            try {
+                const packageData = JSON.parse(fs.readFileSync('./package.json', 'utf-8'));
+                return packageData.name === 'Megumin-Bot-MD' && packageData.repository.url === 'git+https://github.com/David-Chian/Megumin-Bot-MD.git' && SECRET_KEY === '49rof384foerAlkkO4KF4Tdfoflw';
+            } catch (error) {
+                console.error('Error al leer package.json:', error);
+                return false;
+            }
+        };
+
+        if (!checkPackage()) {
+            await conn.sendMessage(message.chat, { text: 'Error de verificación del bot. Por favor, verifica la configuración.' });
+            return;
+        }
+
+        let data = obtenerDatos();
+        let personajes = obtenerPersonajes();
+        let availableCharacters = personajes.filter(character => {
+            let isReserved = data.personajesReservados.some(reserved => reserved.url === character.url);
+            return !isReserved;
+        });
+
+        if (availableCharacters.length === 0) {
+            await conn.sendMessage(message.chat, { image: { url: completadoImage }, caption: '¡Todos los personajes han sido reservados!' });
+            return;
+        }
+
+        let randomCharacter = availableCharacters[Math.floor(Math.random() * availableCharacters.length)];
+        let uniqueId = uuidv4();
+        let reservedBy = data.usuarios[randomCharacter.url] || null;
+
+        let statusMessage = reservedBy ? `Reservado por ${reservedBy.userId}` : 'Libre';
+        let responseMessage = `*Nombre:* ${randomCharacter.name}\n*Valor:* ${randomCharacter.value} WFC!\n*Estado:* ${statusMessage}\n*ID:* ${uniqueId}`;
+
+        await conn.sendMessage(message.chat, {
+            image: { url: randomCharacter.url },
+            caption: responseMessage,
+            mimetype: 'image/jpeg',
+            contextInfo: {
+                mentionedJid: reservedBy ? [reservedBy.userId] : [],
+                externalAdReply: {
+                    showAdAttribution: true,
+                    title: '¡Nuevo personaje!',
+                    body: '¡Felicidades por tu nuevo personaje!',
+                    thumbnailUrl: randomCharacter.url,
+                    sourceUrl: 'https://github.com/David-Chian/Megumin-Bot-MD',
+                    mediaType: 1,
+                }
+            }
+        });
+
+        if (!reservedBy) {
+            reservarPersonaje(userId, { ...randomCharacter, id: uniqueId });
+        }
+
+        cooldowns[userId] = currentTime;
+        console.log('Cooldown actualizado para ' + userId + ': ' + cooldowns[userId]);
+    } catch (error) {
+        console.error('Error en el handler:', error);
+        await conn.sendMessage(message.chat, { text: 'Ocurrió un error al procesar tu solicitud. Intenta nuevamente.' });
+    }
+};
+
+handler.help = ['roll'];
+handler.tags = ['game'];
+handler.command = ['roll', 'rw'];
+handler.group = true;
+
+export default handler;
