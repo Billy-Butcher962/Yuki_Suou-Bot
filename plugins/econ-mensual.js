@@ -13,18 +13,21 @@ var handler = async (m, { conn }) => {
     let coinReward = pickRandom([5000, 10000, 15000, 20000, baseCoinReward]);
     let cookieReward = pickRandom([1, 2, 3, 4, 5]); // Cantidad de cookies
     let expReward = pickRandom([500, 1000, 1500, 2000, 2500]); // Recompensa de experiencia
+    let diamondReward = pickRandom([1, 2, 3]); // Cantidad de diamantes
 
     // Actualizar los valores del usuario
     user.coin += coinReward;
     user.cookies = (user.cookies || 0) + cookieReward; // Añadir cookies
     user.exp = (user.exp || 0) + expReward; // Añadir experiencia
+    user.diamonds = (user.diamonds || 0) + diamondReward; // Añadir diamantes
 
     m.reply(`
 \`\`\`🎁 ¡Ha pasado un mes! ¡Disfruta de tu regalo mensual! 🐢\`\`\`
 
 🪙 *YukiCoins* : +${coinReward.toLocaleString()}
 🍪 *Cookies* : +${cookieReward}
-✨ *Experiencia* : +${expReward}`);
+✨ *Experiencia* : +${expReward}
+💎 *Diamantes* : +${diamondReward}`);
 
     user.monthly = new Date * 1; // Actualizar la fecha de reclamación
 }
