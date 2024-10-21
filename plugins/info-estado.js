@@ -1,70 +1,39 @@
-const handler = async (m, {conn}) => {
-  try {
-    const pp = imagen10;
-    const img = await(await fetch('https://images3.alphacoders.com/125/1251707.png')).buffer();
-    const _uptime = process.uptime() * 1000;
-    const uptime = clockString(_uptime);
-    const taguser = '@' + m.sender.split('@s.whatsapp.net')[0];
-    await conn.sendMessage(m.chat, { react: { text: '🤠', key: m.key } })
-    const str = `
-┏✧ » ◇ « ✧ » ✦ « ✧ » ◇ « ✧
-┃⍣ 𝙔𝙪𝙠𝙞_𝙎𝙪𝙤𝙪-𝘽𝙤𝙩 ✨
-┃
-┃⍣👋🏻𝘏𝘰𝘭𝘢: ${taguser}
-┃
-┃⍣ *ꨄ︎ ⏳️ 𝘈𝘤𝘵𝘪𝘷𝘰:* ${uptime}
-┃⍣ *ꨄ︎ ✅ 𝘉𝘰𝘵 𝘜𝘴𝘰 𝘗𝘶𝘣𝘭𝘪𝘤𝘰*
-┃⍣ *ꨄ︎ 🦁 𝘖𝘸𝘯𝘦𝘳: I'am|Destroy*
-┃⍣ *ꨄ︎ 🔗 𝘊𝘶𝘦𝘯𝘵𝘢𝘴 𝘖𝘧𝘤:* https://chat.whatsapp.com/H5bw4MJucS1BBHnZ9wv3vI
-╰✧ » ◇ « ✧ » ✦ « ✧ » ◇ « ✧`.trim();
-        const doc = [
-    "pdf",
-    "zip",
-    "vnd.openxmlformats-officedocument.presentationml.presentation",
-    "vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-    "vnd.openxmlformats-officedocument.wordprocessingml.document",
-  ];
-const document = doc[Math.floor(Math.random() * doc.length)];
-  const Message = {
-    document: { url: `https://chat.whatsapp.com/E78uEs2qJIE0apCLB7rSQZ` },
-    mimetype: `application/${document}`,
-    fileName: `「 𝐘𝐮𝐤𝐢_𝐒𝐮𝐨𝐮-𝐁𝐨𝐭🌟 」`,
-    fileLength: 99999999999999,
-    pageCount: 200,
-    contextInfo: {
-      forwardingScore: 200,
-      isForwarded: true,
-      externalAdReply: {
-showAdAttribution: !![],
-            mediaType: 0x1,
-            previewType: "PHOTO",
-        title: "𝒴𝓊𝓀𝒾_𝒮𝓊𝑜𝓊-𝐵𝑜𝓉",
-        thumbnail: imagen10,
-        renderLargerThumbnail: !![],
-        sourceUrl: "https://chat.whatsapp.com/E78uEs2qJIE0apCLB7rSQZ",
-      },
-    },
-    caption: str,
-    footer: wm,
-    headerType: 6,
-  };
-    if (m.isGroup) {
-      conn.sendMessage(m.chat, {text: Message.trim(), mentions: [...str.matchAll(/@([0-9]{5,16}|0)/g)].map((v) => v[1] + '@s.whatsapp.net'), contextInfo: {forwardingScore: 9999999, isForwarded: true, mentionedJid: [...str.matchAll(/@([0-9]{5,16}|0)/g)].map((v) => v[1] + '@s.whatsapp.net'), "externalAdReply": {"showAdAttribution": true, "containsAutoReply": true, "renderLargerThumbnail": true, "title": global.titulowm, "containsAutoReply": true, "mediaType": 1, "thumbnail": pp, "mediaUrl": `https://youtube.com/@user-the-king-destroy`, "sourceUrl": `https://youtube.com/@user-the-king-destroy`}}}, {quoted: m});
-    } else {
-      const fkontak2 = {'key': {'participants': '0@s.whatsapp.net', 'remoteJid': 'status@broadcast', 'fromMe': false, 'id': 'Halo'}, 'message': {'contactMessage': {'vcard': `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`}}, 'participant': '0@s.whatsapp.net'};
-      conn.sendMessage(m.chat, {text: str.trim(), mentions: [...str.matchAll(/@([0-9]{5,16}|0)/g)].map((v) => v[1] + '@s.whatsapp.net'), contextInfo: {forwardingScore: 9999999, isForwarded: true, mentionedJid: [...str.matchAll(/@([0-9]{5,16}|0)/g)].map((v) => v[1] + '@s.whatsapp.net'), "externalAdReply": {"showAdAttribution": true, "containsAutoReply": true, "renderLargerThumbnail": true, "title": global.titulowm, "containsAutoReply": true, "mediaType": 1, "thumbnail": pp, "mediaUrl": ``, "sourceUrl": `https://youtube.com/@user-the-king-destroy`}}}, {quoted: fkontak2});
-    }
-  } catch {
-  }
-};
-handler.help = ['estado'];
-handler.tags = ['info'];
-handler.command = ['estado','status','estate','state','stado','stats','runtime','uptime'];
-export default handler;
-function clockString(ms) {
-  const d = isNaN(ms) ? '--' : Math.floor(ms / 86400000);
-  const h = isNaN(ms) ? '--' : Math.floor(ms / 3600000) % 24;
-  const m = isNaN(ms) ? '--' : Math.floor(ms / 60000) % 60;
-  const s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60;
-  return [`\n│ *=> ✨ ` + d, ' Día(s)* ', `\n│ *=> 💫 ` + h, ' Hora(s)* ', `\n│ *=> 💠 ` + m, ' Minuto(s)* ', `\n│ *=> ♦ ` + s, ' Segundo(s)* '].map((v) => v.toString().padStart(2, 0)).join('');
+let handler = async (m, { conn, isRowner}) => {
+let _muptime
+let totalreg = Object.keys(global.db.data.users).length
+let totalchats = Object.keys(global.db.data.chats).length
+let pp = 'https://tinyurl.com/ys5umedp'
+if (process.send) {
+process.send('uptime')
+_muptime = await new Promise(resolve => {
+process.once('message', resolve)
+setTimeout(resolve, 1000)
+}) * 1000
 }
+let muptime = clockString(_muptime)
+const chats = Object.entries(conn.chats).filter(([id, data]) => id && data.isChats)
+const groupsIn = chats.filter(([id]) => id.endsWith('@g.us')) 
+const used = process.memoryUsage()
+let goku = `╭─⬣「 *Estado De 𝖦𝗈𝗄𝗎* 」⬣\n`
+goku += `│ 🚩 *Creador ∙* Ofc𝖩𝗈𝗌𝗍𝗂𝗇\n`
+goku += `│ 📚 *Grupos Unidos ∙* ${groupsIn.length}\n`
+goku += `│ 👤 *Chats Privados ∙* ${chats.length - groupsIn.length}\n`
+goku += `│ 💬 *Total De Chats ∙* ${chats.length}\n`
+goku += `│ 🍟 *Usuarios Registrados ∙* ${totalreg}\n`
+goku += `│ 🍭 *Grupos Registrados ∙* ${totalchats}\n`
+goku += `│ 🕜 *Actividad ∙* ${muptime}\n`
+goku += `╰─⬣`
+await conn.sendFile(m.chat, pp, 'luffy.jpg', goku, fkontak, null, rcanal)
+}
+handler.help = ['status']
+handler.tags = ['info']
+handler.command = /^(estado|status|estate|state|stado|stats)$/i
+handler.register = true
+export default handler
+
+function clockString(ms) {
+let h = Math.floor(ms / 3600000)
+let m = Math.floor(ms / 60000) % 60
+let s = Math.floor(ms / 1000) % 60
+console.log({ms,h,m,s})
+return [h, m, s].map(v => v.toString().padStart(2, 0) ).join(':')}
