@@ -1,7 +1,7 @@
-import Starlights from '@StarlightsTeam/Scraper'
+import { fetchJson } from '@bochilteam/scraper';
 import yts from 'yt-search'
 
-let handler = async (m, { conn, text, command }) => {
+let handler = async (m, { conn, args, text, command }) => {
   await m.react('🕓')
   let res = await yts(text)
   let vid = res.videos[0]
@@ -17,11 +17,11 @@ let handler = async (m, { conn, text, command }) => {
   await conn.sendFile(m.chat, vid.thumbnail, 'thumbnail.jpg', txt, m)
 
   try {
-    let data = await Starlights.ytmp3v2(vid.url) // Puedes cambiar a ytmp4v2 si prefieres video
-    let mimetype = 'audio/mpeg'
-    let file = { url: data.dl_url }
+    let data = await fetchJson(`https://api.bochilteam.workers.dev/ytmp3?url=${vid.url}`);
+    let mimetype = 'audio/mpeg';
+    let file = { url: data.result.url };
 
-    await conn.sendMessage(m.chat, { audio: file, mimetype, fileName: `${data.title}.mp3` }, { quoted: m })
+    await conn.sendMessage(m.chat, { audio: file, mimetype, fileName: `${data.result.title}.mp3` }, { quoted: m })
     await m.react('✅')
   } catch {
     await m.react('✖️')
@@ -38,7 +38,6 @@ function eYear(txt) {
     if (!txt) {
         return '×'
     }
-    // Simplificación de la función para mayor claridad
     let timeUnits = {
         "month": "mes",
         "year": "año",
